@@ -19,9 +19,9 @@ const Footer = () => {
                             Building the future of digital infrastructure. We engineer scalable software solutions for fast-growing businesses.
                         </p>
                         <div className="space-y-3 mb-8">
-                            <a href="mailto:burjtechconsultancy@gmail.com" className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
+                            <a href="mailto:support@beta-softnet.com" className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
                                 <Mail size={16} className="text-brand-blue" />
-                                burjtechconsultancy@gmail.com
+                                support@beta-softnet.com
                             </a>
                             <a href="tel:+919444369625" className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
                                 <Phone size={16} className="text-brand-blue" />
@@ -96,6 +96,7 @@ const Footer = () => {
                     <div className="flex gap-6">
                         <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
                         <a href="/terms" className="hover:text-white transition-colors">Terms & Conditions</a>
+                        <a href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</a>
                     </div>
                 </div>
             </div>

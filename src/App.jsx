@@ -14,6 +14,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
+import RefundPolicy from './pages/RefundPolicy';
 
 function App() {
   const location = useLocation();
@@ -36,7 +37,7 @@ function App() {
   }, [location.pathname]);
 
   return (
-    <div className="bg-white min-h-screen text-brand-text font-sans selection:bg-brand-blue selection:text-white overflow-hidden flex flex-col">
+    <div className="bg-white min-h-screen text-brand-text font-sans selection:bg-brand-blue selection:text-white flex flex-col">
       <Navbar />
       <main className="flex-grow">
         <AnimatePresence mode="wait">
@@ -49,6 +50,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/refund-policy" element={<RefundPolicy />} />
           </Routes>
         </AnimatePresence>
       </main>
