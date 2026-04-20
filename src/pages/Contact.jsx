@@ -1,11 +1,12 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
 
 const Contact = () => {
     return (
         <div className="pt-28 lg:pt-32 pb-20 min-h-[80vh] bg-slate-50 relative overflow-hidden">
-
+            <SEO title="Contact Us" description="Get in Touch with IT Experts at Beta-Softnet" url="/contact" />
             {/* Background Decor */}
             <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100 rounded-full blur-[120px] opacity-40 -translate-y-1/2 translate-x-1/2"></div>
 

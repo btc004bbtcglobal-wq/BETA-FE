@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { RotateCcw, Shield, Mail, MapPin, CheckCircle, XCircle, AlertTriangle, Globe, ChevronRight, FileText, Smartphone } from 'lucide-react';
 
@@ -89,6 +90,7 @@ const RefundPolicy = () => {
 
     return (
         <div className="min-h-screen bg-[#FDFEFF] selection:bg-brand-blue/10 selection:text-brand-blue relative">
+            <SEO title="Refund Policy" description="Refund and Cancellation Policy of Beta-Softnet" url="/refund-policy" />
             {/* Animated Background Mesh */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100/40 blur-[120px] rounded-full animate-pulse" />

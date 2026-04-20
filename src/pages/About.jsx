@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { Target, Lightbulb, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -6,6 +7,7 @@ import { Link } from 'react-router-dom';
 const About = () => {
     return (
         <div className="pt-28 lg:pt-32 pb-20 min-h-[80vh] bg-white">
+            <SEO title="About Us" description="Learn about Beta-Softnet's Mission and Vision" url="/about" />
             {/* Header Section */}
             <section className="container mx-auto px-6 md:px-12 mb-20 text-center max-w-4xl">
                 <motion.div

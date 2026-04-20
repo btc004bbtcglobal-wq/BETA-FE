@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shield, ChevronRight, Mail, MapPin, ExternalLink, ArrowRight, UserCheck, Lock, Eye, FileText } from 'lucide-react';
 
@@ -84,6 +85,7 @@ const Privacy = () => {
 
     return (
         <div className="min-h-screen bg-[#FDFEFF] selection:bg-brand-blue/10 selection:text-brand-blue relative">
+            <SEO title="Privacy Policy" description="Privacy Policy and Data Protection at Beta-Softnet" url="/privacy" />
             {/* Animated Background Mesh */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100/40 blur-[120px] rounded-full animate-pulse" />

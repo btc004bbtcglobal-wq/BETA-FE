@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUs from '../components/WhyChooseUs';
@@ -29,6 +30,7 @@ const CallToAction = () => (
 const Home = () => {
     return (
         <div>
+            <SEO title="Home" />
             {/* Enhanced Hero Section */}
             <HeroSection />
 

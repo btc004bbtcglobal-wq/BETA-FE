@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { FileText, Shield, User, CreditCard, AlertCircle, Ban, Scale, RefreshCw, Mail, MapPin, ChevronRight, ArrowRight } from 'lucide-react';
 
@@ -82,6 +83,7 @@ const Terms = () => {
 
     return (
         <div className="min-h-screen bg-[#FDFEFF] selection:bg-brand-blue/10 selection:text-brand-blue relative">
+            <SEO title="Terms & Conditions" description="Terms and Conditions of Beta-Softnet services" url="/terms" />
             {/* Animated Background Mesh */}
             <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
                 <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-100/40 blur-[120px] rounded-full animate-pulse" />
