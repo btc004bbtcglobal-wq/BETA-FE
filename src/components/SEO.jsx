@@ -20,7 +20,7 @@ const SEO = ({ title, description, keywords, url }) => {
       {/* Canonical URL */}
       <link rel="canonical" href={fullUrl} />
 
-      {/* Open Graph tags (for Facebook, LinkedIn, etc.) */}
+      {/* Open Graph tags */}
       <meta property="og:type" content="website" />
       <meta property="og:url" content={fullUrl} />
       <meta property="og:title" content={title ? `${title} | ${siteName}` : siteName} />
