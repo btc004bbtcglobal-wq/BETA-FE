@@ -1,27 +1,47 @@
 import React from 'react';
+import { motion } from 'framer-motion';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import SEO from '../components/SEO';
 import HeroSection from '../components/HeroSection';
 import ServicesSection from '../components/ServicesSection';
 import WhyChooseUs from '../components/WhyChooseUs';
 import StatsSection from '../components/StatsSection';
+import logo from '../assets/beta-logo.png';
 
 const CallToAction = () => (
-    <section className="py-24 bg-brand-blue relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-white rounded-full blur-[150px] opacity-20 -translate-y-1/2 translate-x-1/2 pointer-events-none"></div>
+    <section className="py-32 bg-brand-dark relative overflow-hidden">
+        {/* Background mesh */}
+        <div className="absolute inset-0 bg-gradient-mesh opacity-20"></div>
+        
+        <div className="container mx-auto px-6 md:px-12 relative z-10">
+            <div className="max-w-5xl mx-auto glass-card p-12 md:p-20 flex flex-col items-center text-center bg-white/5 border-white/10">
+                <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    className="mb-10"
+                >
+                    <img src={logo} alt="Beta Softnet" className="h-16 w-auto" />
+                </motion.div>
+                
+                <h2 className="heading-2 text-white mb-8">Ready to <span className="text-gradient">Scale Your Vision?</span></h2>
+                <p className="body-text text-slate-400 mb-12 max-w-2xl">
+                    Whether you're a high-growth startup or an established enterprise, our elite engineering teams are ready to help you build the future.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                    <button className="btn-primary flex items-center gap-2 group">
+                        Start Your Journey <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                    </button>
+                    <button className="btn-outline">
+                        Book Strategy Session
+                    </button>
+                </div>
 
-        <div className="container mx-auto px-6 md:px-12 relative z-10 text-center">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">Ready to Transform Your Business?</h2>
-            <p className="text-blue-100 text-lg mb-10 max-w-2xl mx-auto">
-                Let's discuss how our custom software solutions and strategic IT consulting can help you achieve your goals faster.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
-                <button className="bg-white text-brand-blue font-bold py-4 px-8 rounded-md hover:bg-slate-50 transition-colors shadow-lg w-full sm:w-auto">
-                    Contact Our Team
-                </button>
-                <button className="bg-transparent text-white font-medium py-4 px-8 rounded-md border border-white/30 hover:bg-white/10 transition-colors w-full sm:w-auto">
-                    Explore Our Work
-                </button>
+                <div className="mt-16 flex items-center gap-3 text-slate-500 font-bold text-xs uppercase tracking-widest">
+                    <Sparkles size={14} className="text-brand-blue" />
+                    Trusted by 200+ global brands
+                </div>
             </div>
         </div>
     </section>
@@ -29,20 +49,12 @@ const CallToAction = () => (
 
 const Home = () => {
     return (
-        <div>
+        <div className="overflow-x-hidden">
             <SEO title="Home" />
-            {/* Enhanced Hero Section */}
             <HeroSection />
-
-            {/* Pulling in core sections to make home page substantial */}
-            <div className="bg-slate-50 pb-10">
-                <ServicesSection />
-            </div>
-
+            <ServicesSection />
             <StatsSection />
-
             <WhyChooseUs />
-
             <CallToAction />
         </div>
     );

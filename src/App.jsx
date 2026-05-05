@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Lenis from 'lenis';
 
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Preloader from './components/Preloader';
 
 import Home from './pages/Home';
 import Services from './pages/Services';
@@ -18,8 +19,14 @@ import RefundPolicy from './pages/RefundPolicy';
 
 function App() {
   const location = useLocation();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    // Initial loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
     const lenis = new Lenis({
       autoRaf: true,
       duration: 1.2,
@@ -27,6 +34,7 @@ function App() {
     });
 
     return () => {
+      clearTimeout(timer);
       lenis.destroy();
     };
   }, []);
@@ -38,23 +46,31 @@ function App() {
 
   return (
     <div className="bg-white min-h-screen text-brand-text font-sans selection:bg-brand-blue selection:text-white flex flex-col">
-      <Navbar />
-      <main className="flex-grow">
-        <AnimatePresence mode="wait">
-          <Routes location={location} key={location.pathname}>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/services" element={<Services />} />
-            <Route path="/why-us" element={<WhyUs />} />
-            <Route path="/technology" element={<Technology />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/terms" element={<Terms />} />
-            <Route path="/privacy" element={<Privacy />} />
-            <Route path="/refund-policy" element={<RefundPolicy />} />
-          </Routes>
-        </AnimatePresence>
-      </main>
-      <Footer />
+      <AnimatePresence>
+        {isLoading && <Preloader />}
+      </AnimatePresence>
+      
+      {!isLoading && (
+        <>
+          <Navbar />
+          <main className="flex-grow">
+            <AnimatePresence mode="wait">
+              <Routes location={location} key={location.pathname}>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/services" element={<Services />} />
+                <Route path="/why-us" element={<WhyUs />} />
+                <Route path="/technology" element={<Technology />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+                <Route path="/refund-policy" element={<RefundPolicy />} />
+              </Routes>
+            </AnimatePresence>
+          </main>
+          <Footer />
+        </>
+      )}
     </div>
   );
 }

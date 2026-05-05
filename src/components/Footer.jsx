@@ -1,102 +1,94 @@
 import React from 'react';
-import { Twitter, Linkedin, Facebook, MapPin, Mail, Phone, Code2 } from 'lucide-react';
+import { Twitter, Linkedin, Facebook, MapPin, Mail, Phone, ExternalLink, ArrowRight } from 'lucide-react';
+import logo from '../assets/beta-logo.png';
 
 const Footer = () => {
     return (
-        <footer className="bg-slate-900 border-t border-slate-800 pt-20 pb-10">
-            <div className="container mx-auto px-6 md:px-12">
-                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 lg:gap-8 mb-16">
+        <footer className="bg-brand-dark text-white pt-24 pb-12 overflow-hidden relative">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-[0.02] pointer-events-none" style={{ backgroundImage: 'radial-gradient(white 1px, transparent 1px)', backgroundSize: '30px 30px' }}></div>
+            
+            <div className="container mx-auto px-6 md:px-12 relative z-10">
+                <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-12 gap-12 lg:gap-8 mb-20">
 
-                    {/* Company Info & Minimal Contact */}
-                    <div className="col-span-2 lg:col-span-4 pr-0 lg:pr-8">
-                        <a href="#" className="flex items-center gap-2 group mb-6">
-                            <div className="w-8 h-8 rounded bg-brand-blue flex items-center justify-center shrink-0">
-                                <Code2 size={18} className="text-white" />
-                            </div>
-                            <span className="font-bold text-xl text-white tracking-tight">Beta Softnet</span>
+                    {/* Brand Section */}
+                    <div className="col-span-2 lg:col-span-4 pr-0 lg:pr-16">
+                        <a href="#" className="flex items-center gap-3 group mb-8">
+                            <img src={logo} alt="Beta Softnet Logo" className="h-10 w-auto" />
+                            <span className="font-black text-2xl tracking-tighter">
+                                beta<span className="text-brand-blue">-softnet</span>
+                            </span>
                         </a>
-                        <p className="text-slate-400 mb-6 leading-relaxed text-sm">
-                            Building the future of digital infrastructure. We engineer scalable software solutions for fast-growing businesses.
+                        <p className="text-slate-400 mb-8 leading-relaxed text-lg">
+                            Architecting the digital foundations of tomorrow. We deliver elite software engineering and strategic IT consulting for global enterprises.
                         </p>
-                        <div className="space-y-3 mb-8">
-                            <a href="mailto:support@beta-softnet.com" className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
-                                <Mail size={16} className="text-brand-blue" />
-                                support@beta-softnet.com
-                            </a>
-                            <a href="tel:+919444369625" className="flex items-center gap-3 text-slate-400 hover:text-white transition-colors text-sm">
-                                <Phone size={16} className="text-brand-blue" />
-                                +91 9444369625
-                            </a>
-                        </div>
                         <div className="flex gap-4">
-                            <a href="#" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-brand-blue transition-colors">
-                                <Linkedin size={16} />
-                            </a>
-                            <a href="#" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-brand-blue transition-colors">
-                                <Twitter size={16} />
-                            </a>
-                            <a href="#" className="w-9 h-9 rounded-full bg-slate-800 flex items-center justify-center text-slate-400 hover:text-white hover:bg-brand-blue transition-colors">
-                                <Facebook size={16} />
-                            </a>
+                            {[Linkedin, Twitter, Facebook].map((Icon, i) => (
+                                <a key={i} href="#" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-slate-400 hover:text-white hover:bg-brand-blue hover:border-brand-blue transition-all duration-300">
+                                    <Icon size={20} />
+                                </a>
+                            ))}
                         </div>
                     </div>
 
-                    {/* Products Links */}
+                    {/* Navigation Columns */}
                     <div className="col-span-1 lg:col-span-2">
-                        <h4 className="font-semibold text-white mb-6">Products</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-slate-400">
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Nexus Auth</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Nexus DB</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Nexus Shield</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Nexus Analytics</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">All Products</a></li>
+                        <h4 className="font-bold text-white mb-8 text-lg">Platform</h4>
+                        <ul className="flex flex-col gap-4 text-slate-400">
+                            {['Nexus Auth', 'Nexus DB', 'Nexus Shield', 'Nexus Analytics', 'Pricing'].map(item => (
+                                <li key={item}><a href="#" className="hover:text-brand-blue transition-colors flex items-center gap-2 group">{item} <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" /></a></li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Solutions Links */}
                     <div className="col-span-1 lg:col-span-2">
-                        <h4 className="font-semibold text-white mb-6">Solutions</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-slate-400">
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">For Startups</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">For Enterprise</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Financial Services</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Healthcare</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">E-commerce</a></li>
+                        <h4 className="font-bold text-white mb-8 text-lg">Solutions</h4>
+                        <ul className="flex flex-col gap-4 text-slate-400">
+                            {['For Startups', 'For Enterprise', 'Financial Services', 'Healthcare', 'E-commerce'].map(item => (
+                                <li key={item}><a href="#" className="hover:text-brand-blue transition-colors">{item}</a></li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Resources Links */}
                     <div className="col-span-1 lg:col-span-2">
-                        <h4 className="font-semibold text-white mb-6">Resources</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-slate-400">
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Documentation</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">API Reference</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Community Forum</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Blog</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">System Status</a></li>
+                        <h4 className="font-bold text-white mb-8 text-lg">Resources</h4>
+                        <ul className="flex flex-col gap-4 text-slate-400">
+                            {['Documentation', 'API Reference', 'Case Studies', 'Blog', 'Status'].map(item => (
+                                <li key={item}><a href="#" className="hover:text-brand-blue transition-colors">{item}</a></li>
+                            ))}
                         </ul>
                     </div>
 
-                    {/* Company Links */}
                     <div className="col-span-1 lg:col-span-2">
-                        <h4 className="font-semibold text-white mb-6">Company</h4>
-                        <ul className="flex flex-col gap-3 text-sm text-slate-400">
+                        <h4 className="font-bold text-white mb-8 text-lg">Company</h4>
+                        <ul className="flex flex-col gap-4 text-slate-400">
                             <li><a href="/about" className="hover:text-brand-blue transition-colors">About Us</a></li>
                             <li><a href="/contact" className="hover:text-brand-blue transition-colors">Contact</a></li>
                             <li><a href="#" className="hover:text-brand-blue transition-colors">Careers</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Security</a></li>
-                            <li><a href="#" className="hover:text-brand-blue transition-colors">Partners</a></li>
+                            <li><a href="#" className="hover:text-brand-blue transition-colors">Legal</a></li>
                         </ul>
                     </div>
 
                 </div>
 
-                <div className="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
-                    <p>© {new Date().getFullYear()} Beta Softnet. All rights reserved.</p>
-                    <div className="flex gap-6">
-                        <a href="/privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-                        <a href="/terms" className="hover:text-white transition-colors">Terms & Conditions</a>
-                        <a href="/refund-policy" className="hover:text-white transition-colors">Refund Policy</a>
+                {/* Bottom Bar */}
+                <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-slate-500 font-medium">
+                    <div className="flex items-center gap-8">
+                        <p>© {new Date().getFullYear()} Beta Softnet. All rights reserved.</p>
+                        <div className="hidden md:flex gap-6">
+                            <a href="/privacy" className="hover:text-white transition-colors">Privacy</a>
+                            <a href="/terms" className="hover:text-white transition-colors">Terms</a>
+                            <a href="/refund-policy" className="hover:text-white transition-colors">Refunds</a>
+                        </div>
+                    </div>
+                    <div className="flex items-center gap-6">
+                        <div className="flex items-center gap-2 text-sm">
+                            <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                            All systems operational
+                        </div>
+                        <button className="flex items-center gap-2 bg-white/5 hover:bg-white/10 px-4 py-2 rounded-xl transition-colors border border-white/5">
+                            English <ExternalLink size={14} />
+                        </button>
                     </div>
                 </div>
             </div>

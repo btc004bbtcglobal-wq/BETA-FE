@@ -1,32 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Code2, ChevronDown, Database, ShieldCheck, BarChart3, Fingerprint } from 'lucide-react';
+import { Menu, X, ChevronDown, Database, ShieldCheck, BarChart3, Fingerprint, ExternalLink } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import logo from '../assets/beta-logo.png';
 
 const productsList = [
     {
         name: 'Nexus Auth',
         path: '#',
-        desc: 'Seamless passwordless identity management and enterprise SSO.',
-        icon: <Fingerprint size={24} className="text-brand-blue" />
+        desc: 'Identity management & enterprise SSO.',
+        icon: <Fingerprint size={20} />
     },
     {
         name: 'Nexus DB',
         path: '#',
-        desc: 'Distributed serverless database built for global scale and zero latency.',
-        icon: <Database size={24} className="text-brand-blue" />
+        desc: 'Global scale serverless database.',
+        icon: <Database size={20} />
     },
     {
         name: 'Nexus Shield',
         path: '#',
-        desc: 'Real-time threat mitigation and automated penetration testing.',
-        icon: <ShieldCheck size={24} className="text-brand-blue" />
+        desc: 'Real-time threat mitigation.',
+        icon: <ShieldCheck size={20} />
     },
     {
         name: 'Nexus Analytics',
         path: '#',
-        desc: 'AI-driven dashboards to understand your active users in real-time.',
-        icon: <BarChart3 size={24} className="text-brand-blue" />
+        desc: 'AI-driven user insights.',
+        icon: <BarChart3 size={20} />
     }
 ];
 
@@ -38,7 +39,7 @@ const Navbar = () => {
 
     useEffect(() => {
         const handleScroll = () => {
-            setScrolled(window.scrollY > 20);
+            setScrolled(window.scrollY > 50);
         };
         window.addEventListener('scroll', handleScroll);
         return () => window.removeEventListener('scroll', handleScroll);
@@ -46,156 +47,137 @@ const Navbar = () => {
 
     const navLinks = [
         { name: 'Home', path: '/' },
-        { name: 'Why Us', path: '/why-us' },
+        { name: 'About', path: '/about' },
+        { name: 'Services', path: '/services' },
         { name: 'Technology', path: '/technology' },
     ];
 
     return (
-        <header
-            className={`fixed top-0 w-full z-[100] transition-all duration-300 ${scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm py-3' : 'bg-white py-5'
-                } border-b border-slate-100`}
-        >
-            <div className="container mx-auto px-6 md:px-12 flex justify-between items-center">
-                {/* Logo */}
-                <Link to="/" className="flex items-center gap-2 group">
-                    <div className="w-9 h-9 rounded-lg bg-brand-blue flex items-center justify-center shrink-0">
-                        <Code2 size={20} className="text-white" />
-                    </div>
-                    <span className="font-bold text-xl text-brand-dark tracking-tight">TechStart</span>
-                </Link>
-
-                {/* Desktop Nav */}
-                <nav className="hidden md:flex gap-8 items-center h-full">
-                    <Link
-                        to="/"
-                        className={`font-medium transition-colors ${location.pathname === '/' ? 'text-brand-blue' : 'text-brand-text hover:text-brand-blue'}`}
-                    >
-                        Home
+        <div className="fixed top-0 left-0 w-full z-[100] px-4 py-6 md:px-8">
+            <header
+                className={`mx-auto max-w-7xl transition-all duration-500 rounded-full border border-white/20 ${
+                    scrolled 
+                    ? 'bg-white/80 backdrop-blur-xl shadow-2xl shadow-brand-blue/10 py-3 px-6' 
+                    : 'bg-transparent py-4 px-8'
+                }`}
+            >
+                <div className="flex justify-between items-center">
+                    {/* Logo & Brand */}
+                    <Link to="/" className="flex items-center gap-3 group">
+                        <img src={logo} alt="Beta Softnet Logo" className="h-10 w-auto transition-transform group-hover:scale-110 duration-300" />
+                        <span className={`font-black text-xl tracking-tighter transition-colors ${scrolled ? 'text-brand-dark' : 'text-brand-dark'}`}>
+                            beta<span className="text-brand-blue">-softnet</span>
+                        </span>
                     </Link>
 
-                    {/* Products Mega Menu Trigger */}
-                    <div
-                        className="relative h-full flex items-center"
-                        onMouseEnter={() => setProductsOpen(true)}
-                        onMouseLeave={() => setProductsOpen(false)}
-                    >
-                        <button className="flex items-center gap-1 font-medium text-brand-text hover:text-brand-blue transition-colors py-4">
-                            Products <ChevronDown size={16} className={`transition-transform duration-300 ${productsOpen ? 'rotate-180' : ''}`} />
-                        </button>
+                    {/* Desktop Nav */}
+                    <nav className="hidden lg:flex items-center gap-2">
+                        {navLinks.map((link) => (
+                            <Link
+                                key={link.name}
+                                to={link.path}
+                                className={`px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+                                    location.pathname === link.path 
+                                    ? 'bg-brand-blue text-white shadow-lg shadow-brand-blue/20' 
+                                    : 'text-brand-text hover:bg-slate-100 hover:text-brand-blue'
+                                }`}
+                            >
+                                {link.name}
+                            </Link>
+                        ))}
 
-                        {/* Mega Dropdown */}
-                        <AnimatePresence>
-                            {productsOpen && (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 15 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: 15 }}
-                                    transition={{ duration: 0.2 }}
-                                    className="absolute top-full left-1/2 -translate-x-1/2 w-[600px] bg-white rounded-2xl shadow-xl border border-slate-100 overflow-hidden pt-2"
-                                >
-                                    <div className="p-6 grid grid-cols-2 gap-x-8 gap-y-6 relative z-10 bg-white">
-                                        {productsList.map((product, idx) => (
-                                            <a href={product.path} key={idx} className="group flex items-start gap-4 p-3 -m-3 rounded-xl hover:bg-slate-50 transition-colors">
-                                                <div className="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center shrink-0 group-hover:bg-brand-blue transition-colors duration-300">
-                                                    <div className="group-hover:text-white transition-colors duration-300">
+                        {/* Products Dropdown Trigger */}
+                        <div
+                            className="relative"
+                            onMouseEnter={() => setProductsOpen(true)}
+                            onMouseLeave={() => setProductsOpen(false)}
+                        >
+                            <button className={`flex items-center gap-1.5 px-5 py-2 rounded-full font-medium transition-all duration-300 ${
+                                productsOpen ? 'bg-slate-100 text-brand-blue' : 'text-brand-text hover:bg-slate-100 hover:text-brand-blue'
+                            }`}>
+                                Products <ChevronDown size={14} className={`transition-transform duration-300 ${productsOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            <AnimatePresence>
+                                {productsOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                                        exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                                        className="absolute top-full right-0 mt-3 w-80 bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden p-4"
+                                    >
+                                        <div className="grid gap-2">
+                                            {productsList.map((product) => (
+                                                <a href={product.path} key={product.name} className="flex items-center gap-4 p-3 rounded-2xl hover:bg-brand-blue-light transition-colors group">
+                                                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">
                                                         {product.icon}
                                                     </div>
-                                                </div>
-                                                <div>
-                                                    <h4 className="font-bold text-brand-dark mb-1 group-hover:text-brand-blue transition-colors">{product.name}</h4>
-                                                    <p className="text-sm text-slate-500 leading-relaxed">{product.desc}</p>
-                                                </div>
-                                            </a>
-                                        ))}
-                                    </div>
-                                    <div className="bg-slate-50 p-6 border-t border-slate-100 flex justify-between items-center relative z-10">
-                                        <div>
-                                            <h4 className="font-bold text-brand-dark">Enterprise Solutions</h4>
-                                            <p className="text-sm text-slate-500 mt-1">Need a custom product suite?</p>
+                                                    <div>
+                                                        <h4 className="font-bold text-sm text-brand-dark">{product.name}</h4>
+                                                        <p className="text-xs text-slate-500">{product.desc}</p>
+                                                    </div>
+                                                </a>
+                                            ))}
                                         </div>
-                                        <button className="btn-secondary py-2 px-4 shadow-none">Contact Sales</button>
-                                    </div>
-                                </motion.div>
-                            )}
-                        </AnimatePresence>
-                    </div>
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
+                    </nav>
 
-                    <Link
-                        to="/about"
-                        className={`font-medium transition-colors ${location.pathname === '/about' ? 'text-brand-blue' : 'text-brand-text hover:text-brand-blue'}`}
-                    >
-                        About
-                    </Link>
-                    <Link
-                        to="/why-us"
-                        className={`font-medium transition-colors ${location.pathname === '/why-us' ? 'text-brand-blue' : 'text-brand-text hover:text-brand-blue'}`}
-                    >
-                        Why Us
-                    </Link>
-                    <Link
-                        to="/technology"
-                        className={`font-medium transition-colors ${location.pathname === '/technology' ? 'text-brand-blue' : 'text-brand-text hover:text-brand-blue'}`}
-                    >
-                        Technology
-                    </Link>
-
-                    <div className="ml-4 flex items-center gap-4">
+                    {/* Desktop CTA */}
+                    <div className="hidden lg:flex items-center gap-4">
                         <Link to="/contact">
-                            <button className="btn-primary py-2.5 px-6">
-                                Contact Us
+                            <button className="btn-primary py-2.5 px-6 text-sm">
+                                Get Started
                             </button>
                         </Link>
                     </div>
-                </nav>
 
-                {/* Mobile Toggle */}
-                <button
-                    className="md:hidden text-brand-dark p-2"
-                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                >
-                    {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
+                    {/* Mobile Toggle */}
+                    <button
+                        className={`lg:hidden p-2 rounded-full transition-colors ${scrolled ? 'bg-slate-100 text-brand-dark' : 'bg-slate-100/50 text-brand-dark'}`}
+                        onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    >
+                        {mobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+                    </button>
+                </div>
+            </header>
 
             {/* Mobile Nav */}
             <AnimatePresence>
                 {mobileMenuOpen && (
                     <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        className="absolute top-full left-0 w-full bg-white border-b border-slate-100 md:hidden overflow-hidden"
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        className="absolute top-full left-0 w-full px-4 mt-2 lg:hidden"
                     >
-                        <div className="flex flex-col p-6 gap-4">
-                            <Link to="/" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === '/' ? 'text-brand-blue' : 'text-brand-dark'}`}>Home</Link>
-
-                            <div className="border-b border-slate-50 pb-2">
-                                <div className="text-lg font-medium py-2 text-brand-dark">Products</div>
-                                <div className="grid grid-cols-1 gap-2 pl-4">
-                                    {productsList.map(p => (
-                                        <a key={p.name} href={p.path} className="text-slate-500 py-1" onClick={() => setMobileMenuOpen(false)}>
-                                            • {p.name}
-                                        </a>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <Link to="/about" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === '/about' ? 'text-brand-blue' : 'text-brand-dark'}`}>About</Link>
-                            <Link to="/why-us" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === '/why-us' ? 'text-brand-blue' : 'text-brand-dark'}`}>Why Us</Link>
-                            <Link to="/technology" onClick={() => setMobileMenuOpen(false)} className={`text-lg font-medium py-2 border-b border-slate-50 ${location.pathname === '/technology' ? 'text-brand-blue' : 'text-brand-dark'}`}>Technology</Link>
-
-                            <div className="flex flex-col gap-3 mt-4 pt-4">
-                                <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
-                                    <button className="btn-primary w-full">
-                                        Contact Us
-                                    </button>
+                        <div className="bg-white rounded-[2rem] shadow-2xl border border-slate-100 p-6 flex flex-col gap-4">
+                            {navLinks.map((link) => (
+                                <Link
+                                    key={link.name}
+                                    to={link.path}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className={`text-lg font-bold p-4 rounded-2xl transition-colors ${
+                                        location.pathname === link.path ? 'bg-brand-blue-light text-brand-blue' : 'text-brand-dark hover:bg-slate-50'
+                                    }`}
+                                >
+                                    {link.name}
                                 </Link>
-                            </div>
+                            ))}
+                            <div className="h-px bg-slate-100 my-2"></div>
+                            <Link to="/contact" onClick={() => setMobileMenuOpen(false)}>
+                                <button className="btn-primary w-full py-4">
+                                    Contact Us
+                                </button>
+                            </Link>
                         </div>
                     </motion.div>
                 )}
             </AnimatePresence>
-        </header>
+        </div>
     );
 };
 

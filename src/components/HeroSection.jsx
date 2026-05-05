@@ -1,133 +1,180 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, CheckCircle2, Shield, Zap, Globe } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Shield, Zap, Globe, Sparkles } from 'lucide-react';
+
+const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.15,
+            delayChildren: 0.3
+        }
+    }
+};
+
+const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+        opacity: 1, 
+        y: 0,
+        transition: { duration: 0.8, ease: [0.25, 1, 0.5, 1] }
+    }
+};
+
+const titleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+        opacity: 1,
+        transition: {
+            staggerChildren: 0.05
+        }
+    }
+};
+
+const wordVariants = {
+    hidden: { opacity: 0, y: 10 },
+    visible: { opacity: 1, y: 0 }
+};
 
 const HeroSection = () => {
+    const titleText = "Building Tomorrow's Digital Infrastructure Today.";
+
     return (
-        <section className="relative pt-28 pb-20 lg:pt-32 lg:pb-32 overflow-hidden bg-gradient-to-b from-slate-50 to-white">
-            {/* Subtle Background Pattern */}
-            <div className="absolute inset-0 opacity-[0.03] z-0" style={{ backgroundImage: 'radial-gradient(#2563EB 1px, transparent 1px)', backgroundSize: '40px 40px' }}></div>
+        <section className="relative pt-40 pb-24 lg:pt-52 lg:pb-40 overflow-hidden bg-white">
+            {/* Mesh Background */}
+            <div className="absolute inset-0 bg-gradient-mesh opacity-40"></div>
+            
+            {/* Animated Decorative Blobs */}
+            <motion.div 
+                animate={{ 
+                    scale: [1, 1.1, 1],
+                    rotate: [0, 45, 0],
+                    x: [0, 30, 0]
+                }}
+                transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-blue/5 rounded-full blur-[150px] pointer-events-none"
+            ></motion.div>
+            <motion.div 
+                animate={{ 
+                    scale: [1, 1.2, 1],
+                    rotate: [0, -30, 0],
+                    y: [0, 50, 0]
+                }}
+                transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute -bottom-40 -left-40 w-[600px] h-[600px] bg-brand-teal/5 rounded-full blur-[120px] pointer-events-none"
+            ></motion.div>
 
-            {/* Decorative Blur Orbs */}
-            <div className="absolute top-0 right-0 -translate-y-12 translate-x-1/3 w-[600px] h-[600px] bg-blue-100 rounded-full blur-[120px] opacity-60"></div>
-            <div className="absolute bottom-0 left-0 translate-y-1/3 -translate-x-1/3 w-[500px] h-[500px] bg-indigo-50 rounded-full blur-[100px] opacity-60"></div>
-
-            <div className="container mx-auto px-6 md:px-12 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-16 lg:gap-8 items-center">
-
-                    {/* Left Content */}
+            <motion.div 
+                className="container mx-auto px-6 md:px-12 relative z-10"
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <div className="flex flex-col items-center text-center mb-16 lg:mb-24">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.7, ease: "easeOut" }}
-                        className="max-w-2xl"
+                        variants={itemVariants}
+                        className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-brand-blue/5 border border-brand-blue/10 text-brand-blue font-bold text-sm mb-8 shadow-sm backdrop-blur-sm"
                     >
-                        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-blue-100 shadow-sm text-brand-blue font-semibold text-sm mb-8">
-                            <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-blue opacity-50"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-brand-blue"></span>
-                            </span>
-                            Top IT Consulting & Software Agency
-                        </div>
-
-                        <h1 className="heading-1 mb-6 text-slate-900 leading-[1.1]">
-                            Accelerating Your <br className="hidden md:block" />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Digital Transformation</span>
-                        </h1>
-
-                        <p className="body-text mb-10 max-w-lg text-slate-600 text-lg sm:text-xl">
-                            We engineer scalable software solutions, modern web applications, and robust IT infrastructure tailored for fast-growing businesses and enterprises worldwide.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-12">
-                            <button className="w-full sm:w-auto btn-primary flex items-center justify-center gap-2 group px-8 py-4 text-lg shadow-blue-500/30 shadow-lg hover:shadow-blue-500/40">
-                                Start Your Project
-                                <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                            </button>
-                            <button className="w-full sm:w-auto btn-secondary px-8 py-4 text-lg bg-white">
-                                Book a Consultation
-                            </button>
-                        </div>
-
-                        <div className="flex items-center gap-6 text-sm font-medium text-slate-700">
-                            <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-md border border-slate-100 shadow-sm">
-                                <Zap size={18} className="text-amber-500" />
-                                Agile Delivery
-                            </div>
-                            <div className="flex items-center gap-2 bg-white px-3 py-1.5 rounded-md border border-slate-100 shadow-sm">
-                                <Shield size={18} className="text-green-500" />
-                                Secure Systems
-                            </div>
-                        </div>
+                        <Sparkles size={16} className="animate-pulse" />
+                        Next-Gen Digital Solutions
                     </motion.div>
 
-                    {/* Right Floating Dashboard UI replacing the generic illustration */}
-                    <motion.div
-                        initial={{ opacity: 0, x: 50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-                        className="relative lg:ml-10"
+                    <motion.h1 
+                        variants={titleVariants}
+                        className="heading-1 mb-8 max-w-5xl mx-auto"
                     >
-                        {/* Background decorative blob */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-blue-600 to-indigo-500 rounded-[2.5rem] transform rotate-3 scale-105 opacity-10 blur-xl"></div>
+                        {titleText.split(" ").map((word, i) => (
+                            <motion.span 
+                                key={i} 
+                                variants={wordVariants}
+                                className={`inline-block mr-3 ${word === "Digital" || word === "Infrastructure" ? "text-gradient" : ""}`}
+                            >
+                                {word}
+                            </motion.span>
+                        ))}
+                    </motion.h1>
 
-                        <div className="relative rounded-[2rem] overflow-hidden shadow-2xl bg-white border border-slate-100 aspect-square sm:aspect-[4/3] flex flex-col transform transition-transform hover:-translate-y-2 duration-500">
-                            {/* Window Header */}
-                            <div className="h-12 bg-slate-50/80 backdrop-blur-sm border-b border-slate-100 flex items-center px-6 gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-400"></div>
-                                <div className="w-3 h-3 rounded-full bg-amber-400"></div>
-                                <div className="w-3 h-3 rounded-full bg-green-400"></div>
-                                <div className="mx-auto text-xs font-semibold text-slate-400 bg-slate-200/50 px-4 py-1 rounded-full">techstart-infrastructure.io</div>
+                    <motion.p 
+                        variants={itemVariants}
+                        className="body-text mb-12 max-w-3xl mx-auto text-brand-text-muted"
+                    >
+                        At <span className="font-bold text-brand-dark">beta-softnet</span>, we empower ambitious enterprises with elite software engineering, high-performance infrastructure, and strategic digital transformation.
+                    </motion.p>
+
+                    <motion.div 
+                        variants={itemVariants}
+                        className="flex flex-col sm:flex-row items-center gap-6"
+                    >
+                        <button className="btn-primary flex items-center gap-2 group">
+                            Accelerate Your Growth
+                            <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+                        </button>
+                        <button className="btn-secondary">
+                            View Case Studies
+                        </button>
+                    </motion.div>
+                </div>
+
+                {/* Main Visual Component - Dashboard UI */}
+                <motion.div
+                    variants={itemVariants}
+                    className="relative max-w-6xl mx-auto mt-12"
+                >
+                    <div className="glass-card p-4 md:p-8 shadow-2xl border-white/50 overflow-hidden relative group hover:border-brand-blue/20 transition-all duration-700">
+                        {/* Fake Dashboard Layout */}
+                        <div className="grid lg:grid-cols-12 gap-8 h-[500px]">
+                            {/* Sidebar UI */}
+                            <div className="hidden lg:col-span-3 lg:flex flex-col gap-6 border-r border-slate-100 pr-8">
+                                <div className="h-8 w-32 bg-slate-100 rounded-full animate-pulse"></div>
+                                <div className="space-y-4">
+                                    {[1, 2, 3, 4].map(i => (
+                                        <div key={i} className={`h-10 rounded-xl ${i === 1 ? 'bg-brand-blue/5' : 'bg-transparent border border-slate-50'}`}></div>
+                                    ))}
+                                </div>
+                                <div className="mt-auto h-32 bg-gradient-to-br from-brand-blue to-brand-teal rounded-2xl opacity-80 relative overflow-hidden group-hover:opacity-100 transition-opacity">
+                                    <motion.div 
+                                        animate={{ x: ["-100%", "100%"] }}
+                                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                                        className="absolute inset-0 bg-white/20 -skew-x-12"
+                                    />
+                                </div>
                             </div>
-
-                            {/* Fake UI Dashboard */}
-                            <div className="p-6 md:p-8 flex-1 flex flex-col gap-6 bg-slate-50/30">
-                                {/* Header Row */}
-                                <div className="flex justify-between items-center mb-2">
-                                    <div>
-                                        <div className="h-4 w-32 bg-slate-200 rounded-full mb-2"></div>
-                                        <div className="h-3 w-48 bg-slate-100 rounded-full"></div>
-                                    </div>
-                                    <div className="h-10 w-24 bg-blue-50 rounded-lg flex items-center justify-center border border-blue-100">
-                                        <div className="h-2 w-12 bg-blue-300 rounded-full"></div>
+                            
+                            {/* Main Dashboard UI */}
+                            <div className="lg:col-span-9 flex flex-col gap-8">
+                                <div className="flex justify-between items-center">
+                                    <div className="h-6 w-48 bg-slate-100 rounded-full"></div>
+                                    <div className="flex gap-2">
+                                        <div className="w-8 h-8 rounded-full bg-slate-50"></div>
+                                        <div className="w-8 h-8 rounded-full bg-slate-50"></div>
                                     </div>
                                 </div>
-
-                                {/* KPI Cards */}
-                                <div className="grid grid-cols-2 gap-4">
-                                    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-5 group hover:border-blue-200 transition-colors">
-                                        <div className="flex justify-between items-center mb-4">
-                                            <div className="h-8 w-8 rounded-lg bg-indigo-50 flex items-center justify-center">
-                                                <CheckCircle2 size={16} className="text-indigo-600" />
-                                            </div>
-                                            <div className="h-2 w-16 bg-green-100 rounded-full"></div>
-                                        </div>
-                                        <div className="text-2xl font-bold text-slate-800 mb-1">99.9%</div>
-                                        <div className="h-2 w-24 bg-slate-100 rounded-full"></div>
-                                    </div>
-                                    <div className="bg-white rounded-xl shadow-sm border border-slate-100 p-5 group hover:border-blue-200 transition-colors">
-                                        <div className="flex justify-between items-center mb-4">
-                                            <div className="h-8 w-8 rounded-lg bg-blue-50 flex items-center justify-center">
-                                                <Zap size={16} className="text-blue-600" />
-                                            </div>
-                                            <div className="h-2 w-10 bg-amber-100 rounded-full"></div>
-                                        </div>
-                                        <div className="text-2xl font-bold text-slate-800 mb-1">&lt;10ms</div>
-                                        <div className="h-2 w-20 bg-slate-100 rounded-full"></div>
-                                    </div>
+                                
+                                <div className="grid grid-cols-3 gap-6">
+                                    {[1, 2, 3].map(i => (
+                                        <motion.div 
+                                            key={i} 
+                                            whileHover={{ y: -5 }}
+                                            className="h-32 bg-white rounded-3xl border border-slate-50 shadow-sm p-6 flex flex-col justify-between"
+                                        >
+                                            <div className="w-8 h-8 rounded-lg bg-slate-50"></div>
+                                            <div className="h-3 w-16 bg-slate-100 rounded-full"></div>
+                                        </motion.div>
+                                    ))}
                                 </div>
-
-                                {/* Chart Area */}
-                                <div className="flex-1 bg-white rounded-xl shadow-sm border border-slate-100 p-6 flex flex-col justify-end gap-3 relative overflow-hidden">
-                                    <div className="absolute top-5 left-6 h-3 w-32 bg-slate-100 rounded-full mb-6"></div>
-                                    <div className="flex items-end gap-2 sm:gap-4 h-32 mt-8">
-                                        {[30, 45, 35, 60, 50, 85, 95].map((h, i) => (
+                                
+                                <div className="flex-1 bg-white rounded-3xl border border-slate-50 shadow-sm p-8 flex flex-col justify-end gap-4 relative overflow-hidden">
+                                    <div className="absolute top-8 left-8 h-4 w-32 bg-slate-100 rounded-full"></div>
+                                    <div className="flex items-end gap-4 h-48">
+                                        {[40, 70, 50, 90, 60, 100, 80, 110, 75, 95].map((h, i) => (
                                             <motion.div
                                                 key={i}
                                                 initial={{ height: 0 }}
-                                                animate={{ height: `${h}% ` }}
-                                                transition={{ duration: 1, delay: 0.5 + (i * 0.1) }}
-                                                className="flex-1 bg-gradient-to-t from-blue-500 to-indigo-400 rounded-t-md opacity-90 hover:opacity-100 cursor-pointer"
+                                                whileInView={{ height: `${h}%` }}
+                                                viewport={{ once: true }}
+                                                transition={{ duration: 1, delay: 0.5 + (i * 0.05), ease: "easeOut" }}
+                                                className="flex-1 bg-gradient-to-t from-brand-blue to-brand-teal rounded-t-xl opacity-90 hover:opacity-100 transition-opacity"
                                             ></motion.div>
                                         ))}
                                     </div>
@@ -135,27 +182,25 @@ const HeroSection = () => {
                             </div>
                         </div>
 
-                        {/* Floating Badge */}
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 1, duration: 0.5 }}
-                            className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 z-20"
-                        >
-                            <div className="flex -space-x-3">
-                                {[1, 2, 3].map(i => (
-                                    <div key={i} className="w-10 h-10 rounded-full border-2 border-white bg-slate-200"></div>
-                                ))}
-                            </div>
-                            <div>
-                                <div className="text-sm font-bold text-slate-800">50+ Experts</div>
-                                <div className="text-xs text-slate-500">Ready to deploy</div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
+                        {/* Floating elements */}
+                        <motion.div 
+                            animate={{ 
+                                y: [0, -20, 0],
+                                scale: [1, 1.1, 1]
+                            }}
+                            transition={{ duration: 5, repeat: Infinity }}
+                            className="absolute -top-12 -right-12 w-48 h-48 bg-brand-purple/10 rounded-full blur-3xl"
+                        ></motion.div>
+                    </div>
 
-                </div>
-            </div>
+                    {/* Trust Badges */}
+                    <div className="flex flex-wrap justify-center items-center gap-12 mt-20 opacity-30 grayscale hover:grayscale-0 transition-all duration-700">
+                        {['ZOHO', 'MICROSOFT', 'GOOGLE', 'AWS', 'SALESFORCE'].map(brand => (
+                            <span key={brand} className="text-2xl font-black tracking-widest text-slate-400 hover:text-brand-blue cursor-default transition-colors">{brand}</span>
+                        ))}
+                    </div>
+                </motion.div>
+            </motion.div>
         </section>
     );
 };
