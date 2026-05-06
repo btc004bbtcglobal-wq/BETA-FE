@@ -35,15 +35,28 @@ const Footer = () => {
                     {/* Products Column */}
                     <div className="col-span-1 lg:col-span-2">
                         <h4 className="font-bold text-white mb-8 text-lg">Our Products</h4>
-                        <div className="mb-4">
-                            <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue/80 mb-4 block">Category: Base</span>
-                            <ul className="flex flex-col gap-4 text-slate-400">
-                                {['BNX Mail', 'B2Auth', 'Cliks Business'].map(item => (
-                                    <li key={item}><a href={`#${item.toLowerCase().replace(' ', '')}`} className="hover:text-brand-blue transition-colors flex items-center gap-2 group">{item} <ArrowRight size={14} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" /></a></li>
-                                ))}
-                            </ul>
+                        <div className="mb-6">
+                            <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue mb-4 block">Category: Base</span>
+                            
+                            <div className="mb-6">
+                                <h5 className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-3">Public</h5>
+                                <ul className="flex flex-col gap-3 text-slate-400">
+                                    {['BNX Mail', 'B2Auth', 'Cliks'].map(item => (
+                                        <li key={item}><a href={`#${item.toLowerCase()}`} className="hover:text-brand-blue transition-colors text-sm flex items-center gap-2 group">{item}</a></li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <div>
+                                <h5 className="text-[9px] font-bold text-slate-500 uppercase tracking-wider mb-3">Business</h5>
+                                <ul className="flex flex-col gap-3 text-slate-400">
+                                    {['Cliks Business'].map(item => (
+                                        <li key={item}><a href={`#${item.toLowerCase().replace(' ', '-')}`} className="hover:text-brand-blue transition-colors text-sm flex items-center gap-2 group">{item}</a></li>
+                                    ))}
+                                </ul>
+                            </div>
                         </div>
-                        <p className="text-[10px] text-slate-500 italic mt-6">More categories planned for future release.</p>
+                        <p className="text-[10px] text-slate-500 italic mt-6">More categories planned.</p>
                     </div>
 
                     <div className="col-span-1 lg:col-span-2">

@@ -5,24 +5,33 @@ import { Link, useLocation } from 'react-router-dom';
 // import logo from '../assets/beta-logo.png';
 import logo from '../assets/beta.png';
 
-const productsList = [
+const publicProducts = [
     {
         name: 'BNX Mail',
         path: '#bnxmail',
-        desc: 'Gmail-like enterprise mail system.',
-        icon: <Mail size={20} />
+        desc: 'Enterprise mail ecosystem.',
+        icon: <Mail size={18} />
     },
     {
         name: 'B2Auth',
         path: '#b2auth',
-        desc: 'Advanced identity & security.',
-        icon: <ShieldCheck size={20} />
+        desc: 'Identity & access management.',
+        icon: <ShieldCheck size={18} />
     },
     {
-        name: 'Cliks Business',
+        name: 'Cliks',
         path: '#cliks',
-        desc: 'All-in-one financial purpose app.',
-        icon: <Wallet size={20} />
+        desc: 'Personal financial companion.',
+        icon: <Wallet size={18} />
+    }
+];
+
+const businessProducts = [
+    {
+        name: 'Cliks Business',
+        path: '#cliks-business',
+        desc: 'Financial ecosystem for teams.',
+        icon: <Database size={18} />
     }
 ];
 
@@ -96,25 +105,62 @@ const Navbar = () => {
                                         initial={{ opacity: 0, y: 10, scale: 0.95 }}
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                                        className="absolute top-full right-0 mt-3 w-80 bg-white rounded-[2rem] shadow-2xl border border-slate-100 overflow-hidden p-4"
+                                        className="absolute top-full right-0 mt-3 w-[560px] bg-white rounded-[2.5rem] shadow-2xl border border-slate-100 overflow-hidden"
                                     >
-                                        <div className="grid gap-2">
-                                            <div className="px-3 py-2">
-                                                <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue/60">Category: Base</span>
+                                        <div className="flex h-full min-h-[300px]">
+                                            {/* Left side: Category */}
+                                            <div className="w-1/3 bg-slate-50 p-6 flex flex-col justify-between">
+                                                <div>
+                                                    <span className="text-[10px] font-black uppercase tracking-widest text-brand-blue mb-2 block">Category</span>
+                                                    <h3 className="text-2xl font-black text-brand-dark mb-2">Base</h3>
+                                                    <p className="text-xs text-slate-500 leading-relaxed">
+                                                        The foundational layer of the Beta ecosystem, providing essential services for individuals and enterprises.
+                                                    </p>
+                                                </div>
+                                                <div className="mt-8">
+                                                    <div className="p-3 rounded-xl bg-brand-blue/5 border border-brand-blue/10">
+                                                        <p className="text-[10px] text-brand-blue font-bold italic">More categories coming soon...</p>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            {productsList.map((product) => (
-                                                <a href={product.path} key={product.name} className="flex items-center gap-4 p-3 rounded-2xl hover:bg-brand-blue-light transition-colors group">
-                                                    <div className="w-10 h-10 rounded-xl bg-slate-50 flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                                                        {product.icon}
+
+                                            {/* Right side: Product List */}
+                                            <div className="w-2/3 p-6 overflow-y-auto max-h-[450px]">
+                                                {/* Public Division */}
+                                                <div className="mb-8">
+                                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 px-2">Public</h4>
+                                                    <div className="grid gap-2">
+                                                        {publicProducts.map((product) => (
+                                                            <a href={product.path} key={product.name} className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group">
+                                                                <div className="w-8 h-8 rounded-lg bg-white border border-slate-100 flex items-center justify-center text-brand-blue shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors shrink-0">
+                                                                    {product.icon}
+                                                                </div>
+                                                                <div>
+                                                                    <h5 className="font-bold text-xs text-brand-dark group-hover:text-brand-blue transition-colors">{product.name}</h5>
+                                                                    <p className="text-[10px] text-slate-500 line-clamp-1">{product.desc}</p>
+                                                                </div>
+                                                            </a>
+                                                        ))}
                                                     </div>
-                                                    <div>
-                                                        <h4 className="font-bold text-sm text-brand-dark">{product.name}</h4>
-                                                        <p className="text-xs text-slate-500">{product.desc}</p>
+                                                </div>
+
+                                                {/* Business Division */}
+                                                <div>
+                                                    <h4 className="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-4 px-2">Business</h4>
+                                                    <div className="grid gap-2">
+                                                        {businessProducts.map((product) => (
+                                                            <a href={product.path} key={product.name} className="flex items-start gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors group">
+                                                                <div className="w-8 h-8 rounded-lg bg-white border border-slate-100 flex items-center justify-center text-brand-blue shadow-sm group-hover:bg-brand-blue group-hover:text-white transition-colors shrink-0">
+                                                                    {product.icon}
+                                                                </div>
+                                                                <div>
+                                                                    <h5 className="font-bold text-xs text-brand-dark group-hover:text-brand-blue transition-colors">{product.name}</h5>
+                                                                    <p className="text-[10px] text-slate-500 line-clamp-1">{product.desc}</p>
+                                                                </div>
+                                                            </a>
+                                                        ))}
                                                     </div>
-                                                </a>
-                                            ))}
-                                            <div className="mt-2 pt-2 border-t border-slate-50 px-3">
-                                                <p className="text-[10px] text-slate-400 italic">More categories coming soon...</p>
+                                                </div>
                                             </div>
                                         </div>
                                     </motion.div>
